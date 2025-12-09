@@ -1,0 +1,6 @@
+package.json
+package-lock.json
+cypress/results/*
+node_modules/
+e2e-cypress/cypress/reports/*
+e2e-cypress/cache/**
