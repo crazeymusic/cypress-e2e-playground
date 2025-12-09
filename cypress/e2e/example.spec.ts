@@ -1,15 +1,12 @@
-import SignInFormPage from "../support/page-object/SignInFormPage";
+import { signInFormActions } from '../support/app-actions/signInFormActions';
 
-describe('This is example Test Suite', () => {
-    let signInFormPage: SignInFormPage;
+describe('Sign in form', () => {
+  it('pozwala się zalogować poprawnymi danymi', () => {
+    cy.visit('/login');
 
-    beforeEach(() => {
-        signInFormPage = new SignInFormPage();
-        cy.visit('/sign-in');
-    });
+    signInFormActions.expectFormIsVisible();
+    signInFormActions.loginWith('user@example.com', 'SuperSecret123');
 
-    it('should check blank data error messages', () => {
-        signInFormPage.exist();
-        signInFormPage.submitLoginForm();
-    });
+    cy.getBySelector('dashboard_WelcomeText').should('be.visible');
+  });
 });

@@ -1,27 +1,41 @@
 import PageObjectClass from "../utils/PageObjectClass";
 
 export enum ESignInFormSelector {
-    EMAIL = 'EmailInput',
-    PASSWORD = 'PasswordInput',
-    LOGIN = 'SubmitButton',
-    SIGNUP = 'SignUpLink',
+  EMAIL = 'EmailInput',
+  PASSWORD = 'PasswordInput',
+  LOGIN = 'SubmitButton',
+  SIGNUP = 'SignUpLink',
 }
 
 class SignInFormPage extends PageObjectClass {
-    protected scopeName = 'login';
+  protected scopeName = 'login';
 
-    exist() {
-        this.shouldAllBeVisible([
-            ESignInFormSelector.EMAIL,
-            ESignInFormSelector.PASSWORD,
-            ESignInFormSelector.SIGNUP,
-            ESignInFormSelector.LOGIN
-        ]);
-    }
+  exist() {
+    this.shouldAllBeVisible([
+      ESignInFormSelector.EMAIL,
+      ESignInFormSelector.PASSWORD,
+      ESignInFormSelector.SIGNUP,
+      ESignInFormSelector.LOGIN,
+    ]);
+  }
 
-    submitLoginForm() {
-        this.getElement(ESignInFormSelector.LOGIN).click();
-    }
+  emailInput() {
+    return this.getElement(ESignInFormSelector.EMAIL);
+  }
+
+  passwordInput() {
+    return this.getElement(ESignInFormSelector.PASSWORD);
+  }
+
+  submitButton() {
+    return this.getElement(ESignInFormSelector.LOGIN);
+  }
+
+  submitLoginForm() {
+    this.submitButton().click();
+  }
 }
+
+export const signInFormPage = new SignInFormPage();
 
 export default SignInFormPage;
