@@ -9,7 +9,7 @@
 // not directly to [data-cy="..."] selectors.
 
 
-import { signInFormActions } from '../support/app-actions/signInFormActions';
+import { signInFormActions } from '../support/appActions/signInFormActions';
 
 describe('Sign in form', () => {
   it('pozwala się zalogować poprawnymi danymi', () => {

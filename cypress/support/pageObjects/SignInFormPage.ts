@@ -45,5 +45,3 @@ class SignInFormPage extends PageObjectClass {
 }
 
 export const signInFormPage = new SignInFormPage();
-
-export default SignInFormPage;

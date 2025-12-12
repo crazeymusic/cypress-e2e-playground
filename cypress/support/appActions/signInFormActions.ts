@@ -7,7 +7,7 @@
 // Uses the Page Object (signInFormPage) under the hood and composes low–level steps into business actions.
 // No raw selectors here – they live in Page Objects. Tests should talk mostly to these actions.
 
-import { signInFormPage } from '../page-object/SignInFormPage';
+import { signInFormPage } from '../pageObjects/SignInFormPage';
 
 export const signInFormActions = {
   expectFormIsVisible() {

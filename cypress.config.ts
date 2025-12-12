@@ -9,7 +9,7 @@ export default defineConfig({
   retries: { runMode: 1, openMode: 0 },
   chromeWebSecurity: true,
   e2e: {
-    baseUrl: '',
+    baseUrl: 'https://practice.expandtesting.com',
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}'
   },
   reporter: 'mochawesome',
