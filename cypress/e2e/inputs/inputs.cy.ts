@@ -9,6 +9,18 @@ describe('Web inputs page for Automation Testing Practice /inputs', () => {
     inputsActions.openPage();
   });
 
+    it('has empty inputs and no outputs on initial load', () => {
+    inputsPage.numberInput.should('have.value', '');
+    inputsPage.textInput.should('have.value', '');
+    inputsPage.passwordInput.should('have.value', '');
+    inputsPage.dateInput.should('have.value', '');
+
+    inputsPage.numberOutput.should('not.exist');
+    inputsPage.textOutput.should('not.exist');
+    inputsPage.passwordOutput.should('not.exist');
+    inputsPage.dateOutput.should('not.exist');
+  });
+
   it('displays entered values in outputs', () => {
     inputsActions.displayDefaultInputs();
 
