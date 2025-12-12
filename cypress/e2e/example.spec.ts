@@ -1,13 +1,6 @@
-// This spec uses app actions instead of raw selectors.
-//
-// Flow in tests should read like a story:
-// - visit page (cy.visit(...))
-// - call app actions: signInFormActions.expectFormIsVisible(), signInFormActions.loginWith(...)
-// - assert outcome on the next screen / state
-//
-// Tests talk mainly to app actions (and maybe Page Objects for rare, custom asserts),
-// not directly to [data-cy="..."] selectors.
-
+// example.spec.ts: test cases + assertions for <sign in form - example>.
+// Uses Page Objects + app actions. No selectors, no low-level UI, no flow logic defined here.
+// Local assertion helpers allowed.
 
 import { signInFormActions } from '../support/appActions/signInFormActions';
 

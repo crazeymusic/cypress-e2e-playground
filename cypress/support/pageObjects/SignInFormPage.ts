@@ -1,10 +1,5 @@
-// SignInFormPage = thin Page Object for the sign in form.
-//
-// Responsibility:
-// - define scopeName + selector enum (ESignInFormSelector)
-// - expose low level helpers for the UI: emailInput(), passwordInput(), submitButton(), submitLoginForm(), exist()
-//
-// No business logic or full flows here (like “login as X”) – those live in app actions (signInFormActions).
+// SignInFormPage: selectors + low-level UI actions for the sign-in form.
+// No flows, no assertions – flows live in signInFormActions.
 
 import PageObjectClass from "../utils/PageObjectClass";
 

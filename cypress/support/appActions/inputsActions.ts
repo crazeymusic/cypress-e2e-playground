@@ -17,6 +17,13 @@ export const defaultInputsData: InputsData = {
   date: '2025-12-24',
 };
 
+export const numberAndDateOnlyInputsData: InputsData = {
+  number: 321,
+  text: '',
+  password: '',
+  date: '2026-01-01',
+};
+
 export const inputsActions = {
   openPage(): void {
     inputsPage.visit();
@@ -36,6 +43,10 @@ export const inputsActions = {
 
   displayDefaultInputs(): void {
     this.displayInputs(defaultInputsData);
+  },
+
+    displayNumberAndDateOnlyInputs(): void {
+    this.displayInputs(numberAndDateOnlyInputsData);
   },
 
   clearAll(): void {

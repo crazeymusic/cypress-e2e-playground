@@ -1,4 +1,4 @@
-class InputsPage {
+export class InputsPage {
   visit(): void {
     cy.visit('/inputs');
   }
@@ -56,11 +56,17 @@ class InputsPage {
   }
 
   typeText(value: string): void {
-    this.textInput.clear().type(value);
+    this.textInput.clear();
+    if (value !== '') {
+      this.textInput.type(value);
+    }
   }
 
   typePassword(value: string): void {
-    this.passwordInput.clear().type(value);
+    this.passwordInput.clear();
+    if (value !== '') {
+      this.passwordInput.type(value);
+    }
   }
 
   typeDate(value: string): void {
