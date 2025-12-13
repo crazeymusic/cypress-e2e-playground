@@ -2,7 +2,7 @@
 // Uses Page Objects + app actions. No selectors, no low-level UI, no flow logic defined here.
 // Local assertion helpers allowed.
 
-import { signInFormActions } from '../support/appActions/signInFormActions';
+import { signInFormActions } from '../support/appActions/exampleActions';
 
 describe('Sign in form', () => {
   it('pozwala się zalogować poprawnymi danymi', () => {

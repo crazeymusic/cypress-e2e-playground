@@ -1,4 +1,19 @@
-export class InputsPage {
+// InputsPage: thin Page Object for external /inputs page.
+// We don't control the HTML, so we map stable CSS selectors into an enum and use simple Cypress commands.
+// Only low-level UI actions here – flows and test data live in inputsActions.
+
+export enum EInputsSelector {
+  NUMBER_INPUT = '#input-number',
+  TEXT_INPUT = '#input-text',
+  PASSWORD_INPUT = '#input-password',
+  DATE_INPUT = '#input-date',
+  NUMBER_OUTPUT = '#output-number',
+  TEXT_OUTPUT = '#output-text',
+  PASSWORD_OUTPUT = '#output-password',
+  DATE_OUTPUT = '#output-date',
+}
+
+class InputsPage {
   visit(): void {
     cy.visit('/inputs');
   }
@@ -6,37 +21,37 @@ export class InputsPage {
   // INPUTS
 
   get numberInput() {
-    return cy.get('#input-number');
+    return cy.get(EInputsSelector.NUMBER_INPUT);
   }
 
   get textInput() {
-    return cy.get('#input-text');
+    return cy.get(EInputsSelector.TEXT_INPUT);
   }
 
   get passwordInput() {
-    return cy.get('#input-password');
+    return cy.get(EInputsSelector.PASSWORD_INPUT);
   }
 
   get dateInput() {
-    return cy.get('#input-date');
+    return cy.get(EInputsSelector.DATE_INPUT);
   }
 
   // OUTPUTS
 
   get numberOutput() {
-    return cy.get('#output-number');
+    return cy.get(EInputsSelector.NUMBER_OUTPUT);
   }
 
   get textOutput() {
-    return cy.get('#output-text');
+    return cy.get(EInputsSelector.TEXT_OUTPUT);
   }
 
   get passwordOutput() {
-    return cy.get('#output-password');
+    return cy.get(EInputsSelector.PASSWORD_OUTPUT);
   }
 
   get dateOutput() {
-    return cy.get('#output-date');
+    return cy.get(EInputsSelector.DATE_OUTPUT);
   }
 
   // BUTTONS

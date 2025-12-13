@@ -1,7 +1,7 @@
 // signInFormActions: user flows + test data for the sign-in form (uses SignInFormPage).
 // No selectors, no assertions – only composed actions.
 
-import { signInFormPage } from '../pageObjects/SignInFormPage';
+import { signInFormPage } from '../pageObjects/ExamplePage';
 
 export const signInFormActions = {
   expectFormIsVisible() {
