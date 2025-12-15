@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "lint": "eslint . cypress --ignore-pattern 'cache/'",
+    "lint": "node node_modules/eslint/bin/eslint.js . cypress --ignore-pattern \"cache/\"",
+    "lint:fix": "node node_modules/eslint/bin/eslint.js . cypress --fix --ignore-pattern \"cache/\"",
     "test": "cypress run",
     "open": "cypress open --e2e",
     "cypress:report:merge": "mochawesome-merge cypress/reports/*.json > cypress/reports/report.json",
