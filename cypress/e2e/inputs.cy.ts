@@ -1,5 +1,5 @@
-import { inputsPage } from '../../support/pageObjects/InputsPage';
-import { inputsActions, defaultInputsData, numberAndDateOnlyInputsData, InputsData } from '../../support/appActions/inputsActions';
+import { inputsPage } from '../support/pageObjects/InputsPage';
+import { inputsActions, defaultInputsData, numberAndDateOnlyInputsData, InputsData } from '../support/appActions/inputsActions';
 
 // Helpers
 

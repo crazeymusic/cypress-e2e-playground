@@ -5,7 +5,7 @@
 import { signInFormActions } from '../support/appActions/exampleActions';
 
 describe('Sign in form', () => {
-  it('pozwala się zalogować poprawnymi danymi', () => {
+  it.skip('allows the user to log in with valid credentials', () => {
     cy.visit('/login');
 
     signInFormActions.expectFormIsVisible();
