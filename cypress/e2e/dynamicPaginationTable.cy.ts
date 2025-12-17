@@ -1,5 +1,10 @@
 import { dynamicPaginationTablePage } from '../support/pageObjects/DynamicPaginationTablePage';
-import { dynamicPaginationTableActions } from '../support/appActions/dynamicPaginationTableActions';
+import {
+  dynamicPaginationTableActions,
+  DYNAMIC_PAGINATION_INFO_TEXT,
+  DYNAMIC_PAGINATION_STUDENTS,
+  DYNAMIC_PAGINATION_SEARCH,
+} from '../support/appActions/dynamicPaginationTableActions';
 
 // Helpers
 
@@ -33,14 +38,13 @@ const expectNumericPageButtonsCountToBe = (count: number): void => {
 
 const expectSingleFilteredRowForAlice = (): void => {
   expectRowsCountToBe(1);
-  dynamicPaginationTablePage.studentNameCells.eq(0).should('have.text', 'Alice Johnson');
-  expectInfoTextToBe('Showing 1 to 1 of 1 entries (filtered from 10 total entries)');
+  dynamicPaginationTablePage.studentNameCells.eq(0).should('have.text', DYNAMIC_PAGINATION_STUDENTS.FIRST_PAGE_FIRST_ROW);
+  expectInfoTextToBe(DYNAMIC_PAGINATION_INFO_TEXT.FILTER_ALICE);
   expectActivePageToBe(1);
   expectNumericPageButtonsCountToBe(1);
   expectPreviousDisabled();
   expectNextDisabled();
 };
-
 
 describe('Dynamic pagination Table page for Automation Testing Practice /dynamic-pagination-table', () => {
   beforeEach(() => {
@@ -50,7 +54,7 @@ describe('Dynamic pagination Table page for Automation Testing Practice /dynamic
   it('renders initial page with default page size and state', () => {
     dynamicPaginationTablePage.pageSizeSelect.should('have.value', '3');
     expectRowsCountToBe(3);
-    expectInfoTextToBe('Showing 1 to 3 of 10 entries');
+    expectInfoTextToBe(DYNAMIC_PAGINATION_INFO_TEXT.PAGE1_SIZE3);
     expectActivePageToBe(1);
     expectPreviousDisabled();
   });
@@ -61,17 +65,17 @@ describe('Dynamic pagination Table page for Automation Testing Practice /dynamic
     // Page 2
     expectActivePageToBe(2);
     expectRowsCountToBe(3);
-    expectInfoTextToBe('Showing 4 to 6 of 10 entries');
+    expectInfoTextToBe(DYNAMIC_PAGINATION_INFO_TEXT.PAGE2_SIZE3);
     expectPreviousEnabled();
-    dynamicPaginationTablePage.studentNameCells.eq(0).should('have.text', 'Emma Brown');
+    dynamicPaginationTablePage.studentNameCells.eq(0).should('have.text', DYNAMIC_PAGINATION_STUDENTS.SECOND_PAGE_FIRST_ROW);
 
     dynamicPaginationTableActions.goToPreviousPage();
 
     // Back to page 1
     expectActivePageToBe(1);
     expectRowsCountToBe(3);
-    expectInfoTextToBe('Showing 1 to 3 of 10 entries');
-    dynamicPaginationTablePage.studentNameCells.eq(0).should('have.text', 'Alice Johnson');
+    expectInfoTextToBe(DYNAMIC_PAGINATION_INFO_TEXT.PAGE1_SIZE3);
+    dynamicPaginationTablePage.studentNameCells.eq(0).should('have.text', DYNAMIC_PAGINATION_STUDENTS.FIRST_PAGE_FIRST_ROW);
   });
 
   it('updates visible rows and total pages when page size changes', () => {
@@ -79,38 +83,37 @@ describe('Dynamic pagination Table page for Automation Testing Practice /dynamic
 
     dynamicPaginationTablePage.pageSizeSelect.should('have.value', '5');
     expectRowsCountToBe(5);
-    expectInfoTextToBe('Showing 1 to 5 of 10 entries');
+    expectInfoTextToBe(DYNAMIC_PAGINATION_INFO_TEXT.PAGE1_SIZE5);
     expectActivePageToBe(1);
     expectNumericPageButtonsCountToBe(2); // 10 entries / 5 per page
   });
 
   it('filters rows by search and adjusts pagination', () => {
-    dynamicPaginationTableActions.searchFor('Alice');
+    dynamicPaginationTableActions.searchFor(DYNAMIC_PAGINATION_SEARCH.ALICE);
 
     expectRowsCountToBe(1);
-    dynamicPaginationTablePage.studentNameCells.eq(0).should('have.text', 'Alice Johnson');
-    expectInfoTextToBe('Showing 1 to 1 of 1 entries (filtered from 10 total entries)');
+    dynamicPaginationTablePage.studentNameCells.eq(0).should('have.text', DYNAMIC_PAGINATION_STUDENTS.FIRST_PAGE_FIRST_ROW);
+    expectInfoTextToBe(DYNAMIC_PAGINATION_INFO_TEXT.FILTER_ALICE);
     expectNumericPageButtonsCountToBe(1);
     expectNextDisabled();
     expectPreviousDisabled();
   });
 
   it('resets pagination correctly when filter reduces rows below current page', () => {
-  dynamicPaginationTableActions.openPage();
-  dynamicPaginationTableActions.goToPage(4);
+    dynamicPaginationTableActions.openPage();
+    dynamicPaginationTableActions.goToPage(4);
 
-  expectActivePageToBe(4);
-  expectRowsCountToBe(1);
-  expectInfoTextToBe('Showing 10 to 10 of 10 entries');
+    expectActivePageToBe(4);
+    expectRowsCountToBe(1);
+    expectInfoTextToBe(DYNAMIC_PAGINATION_INFO_TEXT.PAGE_LAST_SIZE3);
 
-  dynamicPaginationTableActions.searchFor('Alice');
-  expectSingleFilteredRowForAlice();
+    dynamicPaginationTableActions.searchFor(DYNAMIC_PAGINATION_SEARCH.ALICE);
+    expectSingleFilteredRowForAlice();
 
-  dynamicPaginationTableActions.clearSearch();
-  expectActivePageToBe(1);
-  expectRowsCountToBe(3);
-  expectInfoTextToBe('Showing 1 to 3 of 10 entries');
-  expectNumericPageButtonsCountToBe(4);
-});
-
+    dynamicPaginationTableActions.clearSearch();
+    expectActivePageToBe(1);
+    expectRowsCountToBe(3);
+    expectInfoTextToBe(DYNAMIC_PAGINATION_INFO_TEXT.PAGE1_SIZE3);
+    expectNumericPageButtonsCountToBe(4);
+  });
 });
