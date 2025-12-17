@@ -31,6 +31,17 @@ const expectNumericPageButtonsCountToBe = (count: number): void => {
   dynamicPaginationTablePage.pageButtons.should('have.length', count);
 };
 
+const expectSingleFilteredRowForAlice = (): void => {
+  expectRowsCountToBe(1);
+  dynamicPaginationTablePage.studentNameCells.eq(0).should('have.text', 'Alice Johnson');
+  expectInfoTextToBe('Showing 1 to 1 of 1 entries (filtered from 10 total entries)');
+  expectActivePageToBe(1);
+  expectNumericPageButtonsCountToBe(1);
+  expectPreviousDisabled();
+  expectNextDisabled();
+};
+
+
 describe('Dynamic pagination Table page for Automation Testing Practice /dynamic-pagination-table', () => {
   beforeEach(() => {
     dynamicPaginationTableActions.openPage();
@@ -83,4 +94,23 @@ describe('Dynamic pagination Table page for Automation Testing Practice /dynamic
     expectNextDisabled();
     expectPreviousDisabled();
   });
+
+  it('resets pagination correctly when filter reduces rows below current page', () => {
+  dynamicPaginationTableActions.openPage();
+  dynamicPaginationTableActions.goToPage(4);
+
+  expectActivePageToBe(4);
+  expectRowsCountToBe(1);
+  expectInfoTextToBe('Showing 10 to 10 of 10 entries');
+
+  dynamicPaginationTableActions.searchFor('Alice');
+  expectSingleFilteredRowForAlice();
+
+  dynamicPaginationTableActions.clearSearch();
+  expectActivePageToBe(1);
+  expectRowsCountToBe(3);
+  expectInfoTextToBe('Showing 1 to 3 of 10 entries');
+  expectNumericPageButtonsCountToBe(4);
+});
+
 });
