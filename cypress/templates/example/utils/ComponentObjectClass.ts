@@ -1,8 +1,10 @@
 import BaseObjectClass from './BaseObjectClass';
 
 abstract class ComponentObjectClass extends BaseObjectClass {
-  // In the specific page class:
-  // protected scopeName = 'header';
+  /**
+   * In a concrete component class, define a scopeName, e.g.:
+   *   protected scopeName = "header";
+   */
 }
 
 export default ComponentObjectClass;

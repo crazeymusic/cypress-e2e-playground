@@ -4,6 +4,7 @@
     "lint:fix": "node node_modules/eslint/bin/eslint.js . cypress --fix --ignore-pattern \"cache/\"",
     "test": "cypress run",
     "open": "cypress open --e2e",
+    "cypress:run": "cypress run",
     "cypress:report:merge": "mochawesome-merge cypress/reports/*.json > cypress/reports/report.json",
     "cypress:report:generate": "marge cypress/reports/report.json -f report -o cypress/reports/html",
     "cypress:report": "npm run cypress:run && npm run cypress:report:merge && npm run cypress:report:generate"
