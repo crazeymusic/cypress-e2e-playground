@@ -8,9 +8,15 @@ This repository focuses on practicing clean, minimal UI test architecture with a
 
 What this repo demonstrates:
 
-- E2E test design: readable specs, small assertion helpers, positive and edge cases
-- Separation of concerns: Page Objects vs app actions vs specs
+- E2E test design: readable specs, small local assertion helpers, positive and edge cases
+- Separation of concerns: Page Objects vs app actions vs specs (clean layering, no mixed responsibilities)
 - Consistent naming and conventions for future features/pages
+
+Selectors / testability note:
+
+- The system under test is a public demo app and does not provide dedicated test ids (e.g. `data-cy`, `data-testid`). For that reason, selectors are based on stable attributes/structure and are encapsulated inside thin Page Objects.
+- In commercial projects, I strongly advocate for a testability contract: dedicated test ids, selector stability guidelines, and PR checks to reduce flakiness and maintenance cost.
+- Folder `cypress/templates/example` contains a reference/template showing the preferred Page Object + Actions + Spec approach when the team controls the UI and can introduce test ids.
 
 ## Tech stack
 
